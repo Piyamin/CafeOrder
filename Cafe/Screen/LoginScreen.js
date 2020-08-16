@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#ab7815',
   },
   SectionStyle: {
     flexDirection: 'row',
