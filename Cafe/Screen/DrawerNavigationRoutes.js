@@ -5,19 +5,20 @@
 import React from 'react';
 
 //Import Navigators
-import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 
 //Import External Screens
 import HomeScreen from './drawerScreens/HomeScreen';
 import SettingsScreen from './drawerScreens/SettingsScreen';
+import test from './drawerScreens/test';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 
 const FirstActivity_StackNavigator = createStackNavigator({
   First: {
     screen: HomeScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       title: 'Home Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
@@ -31,8 +32,21 @@ const FirstActivity_StackNavigator = createStackNavigator({
 const SecondActivity_StackNavigator = createStackNavigator({
   First: {
     screen: SettingsScreen,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({navigation}) => ({
       title: 'Setting Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#307ecc',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+const TrendActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: test,
+    navigationOptions: ({navigation}) => ({
+      title: 'Test',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#307ecc',
@@ -56,12 +70,18 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
         drawerLabel: 'Setting Screen',
       },
     },
+    test: {
+      screen: TrendActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Test',
+      },
+    },
   },
   {
     contentComponent: CustomSidebarMenu,
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle',
-  }
+  },
 );
 export default DrawerNavigatorRoutes;
