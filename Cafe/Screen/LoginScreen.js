@@ -85,10 +85,10 @@ const LoginScreen = (props) => {
               <Image
                 source={require('../Image/logo.png')}
                 style={{
-                  width: '100%',
-                  height: 200,
+                  width: '200%',
+                  height: 300,
                   resizeMode: 'contain',
-                  margin: 30,
+                  margin: 1,
                 }}
               />
             </View>
