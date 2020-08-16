@@ -2,7 +2,7 @@
 /* https://aboutreact.com/react-native-login-and-signup/ */
 
 //Import React and Hook we needed
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 //Import all required component
 import {
@@ -19,7 +19,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader from './Components/loader';
 
-const LoginScreen = props => {
+const LoginScreen = (props) => {
   let [userEmail, setUserEmail] = useState('');
   let [userPassword, setUserPassword] = useState('');
   let [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ const LoginScreen = props => {
       return;
     }
     setLoading(true);
-    var dataToSend = { user_email: userEmail, user_password: userPassword };
+    var dataToSend = {user_email: userEmail, user_password: userPassword};
     var formBody = [];
     for (var key in dataToSend) {
       var encodedKey = encodeURIComponent(key);
@@ -52,8 +52,9 @@ const LoginScreen = props => {
         //Header Defination
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       },
-    }).then(response => response.json())
-      .then(responseJson => {
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
         //Hide Loader
         setLoading(false);
         console.log(responseJson);
@@ -67,7 +68,7 @@ const LoginScreen = props => {
           console.log('Please check your email id or password');
         }
       })
-      .catch(error => {
+      .catch((error) => {
         //Hide Loader
         setLoading(false);
         console.error(error);
@@ -78,14 +79,14 @@ const LoginScreen = props => {
     <View style={styles.mainBody}>
       <Loader loading={loading} />
       <ScrollView keyboardShouldPersistTaps="handled">
-        <View style={{ marginTop: 100 }}>
+        <View style={{marginTop: 100}}>
           <KeyboardAvoidingView enabled>
-            <View style={{ alignItems: 'center' }}>
+            <View style={{alignItems: 'center'}}>
               <Image
-                source={require('../Image/aboutreact.png')}
+                source={require('../Image/logo.png')}
                 style={{
-                  width: '50%',
-                  height: 100,
+                  width: '100%',
+                  height: 200,
                   resizeMode: 'contain',
                   margin: 30,
                 }}
@@ -94,13 +95,13 @@ const LoginScreen = props => {
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
-                onChangeText={UserEmail => setUserEmail(UserEmail)}
+                onChangeText={(UserEmail) => setUserEmail(UserEmail)}
                 underlineColorAndroid="#FFFFFF"
                 placeholder="Enter Email" //dummy@abc.com
                 placeholderTextColor="#F6F6F7"
                 autoCapitalize="none"
                 keyboardType="email-address"
-                ref={ref => {
+                ref={(ref) => {
                   this._emailinput = ref;
                 }}
                 returnKeyType="next"
@@ -113,12 +114,12 @@ const LoginScreen = props => {
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
-                onChangeText={UserPassword => setUserPassword(UserPassword)}
+                onChangeText={(UserPassword) => setUserPassword(UserPassword)}
                 underlineColorAndroid="#FFFFFF"
                 placeholder="Enter Password" //12345
                 placeholderTextColor="#F6F6F7"
                 keyboardType="default"
-                ref={ref => {
+                ref={(ref) => {
                   this._passwordinput = ref;
                 }}
                 onSubmitEditing={Keyboard.dismiss}
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#ab7815',
+    backgroundColor: '#f36868',
   },
   SectionStyle: {
     flexDirection: 'row',
