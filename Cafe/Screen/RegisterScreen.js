@@ -93,7 +93,7 @@ const RegisterScreen = props => {
       <View
         style={{
           flex: 1,
-          backgroundColor: '#ab7815',
+          backgroundColor: '#350D04',
           justifyContent: 'center',
         }}>
         <Image
@@ -111,17 +111,17 @@ const RegisterScreen = props => {
     );
   }
   return (
-    <View style={{ flex: 1, backgroundColor: '#ab7815' }}>
+    <View style={{ flex: 1, backgroundColor: '#350D04' }}>
       <Loader loading={loading} />
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={{ alignItems: 'center' }}>
           <Image
-            source={require('../Image/aboutreact.png')}
+            source={require('../Image/logo.png')}
             style={{
-              width: '50%',
-              height: 100,
-              resizeMode: 'contain',
-              margin: 30,
+              width: 400,
+              height: 200,
+              //resizeMode: 'contain',
+              margin: 2,
             }}
           />
         </View>
@@ -216,10 +216,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: '#542e0f',
     borderWidth: 0,
     color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    borderColor: '#CD853F',
     height: 40,
     alignItems: 'center',
     borderRadius: 30,

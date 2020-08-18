@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f36868',
+    backgroundColor: '#350D04',
   },
   activityIndicator: {
     alignItems: 'center',

@@ -85,9 +85,9 @@ const LoginScreen = (props) => {
               <Image
                 source={require('../Image/logo.png')}
                 style={{
-                  width: '200%',
-                  height: 300,
-                  resizeMode: 'contain',
+                  width: 500,
+                  height: 200,
+                  //resizeMode: 'contain',
                   margin: 1,
                 }}
               />
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#f36868',
+    backgroundColor: '#350D04',
   },
   SectionStyle: {
     flexDirection: 'row',
@@ -164,10 +164,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: '#542e0f',
     borderWidth: 0,
-    color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    color: '#ffffff',
+    borderColor: '#CD853F',
     height: 40,
     alignItems: 'center',
     borderRadius: 30,
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonTextStyle: {
-    color: '#FFFFFF',
+    color: '#ffffff',
     paddingVertical: 10,
     fontSize: 16,
   },
