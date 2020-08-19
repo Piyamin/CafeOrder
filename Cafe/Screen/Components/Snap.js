@@ -38,7 +38,7 @@ export default class App extends React.Component {
       <View
         style={{
           backgroundColor: 'floralwhite',
-          borderRadius: 5,
+          borderRadius: 2,
           height: 250,
           padding: 50,
           marginLeft: 25,

@@ -4,6 +4,7 @@
 //Import React
 import React from 'react';
 import Snap from '../Components/Snap';
+import Popular from '../Components/Popular';
 //Import all required component
 import {View, Text} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -15,6 +16,7 @@ const HomeScreen = () => {
       <Text
         style={{
           fontSize: 23,
+          marginTop: 20,
           marginBottom: 20,
           marginLeft: 20,
           textAlign: 'left',
@@ -29,10 +31,22 @@ const HomeScreen = () => {
           fontSize: 23,
           marginBottom: 20,
           textAlign: 'left',
+          marginLeft: 20,
+          marginTop: 20,
+        }}>
+        Catagory
+      </Text>
+      <Text
+        style={{
+          fontSize: 23,
+          marginBottom: 20,
+          textAlign: 'left',
+          marginLeft: 20,
           marginTop: 20,
         }}>
         Popular
       </Text>
+      <Popular />
     </ScrollView>
   );
 };
