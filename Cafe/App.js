@@ -33,16 +33,16 @@ const Auth = createStackNavigator({
       headerTintColor: '#fff',
     },
   },
-  DetailScreen: {
-    screen: DetailScreen,
-    navigationOptions: {
-      title: 'Detail',
-      headerStyle: {
-        backgroundColor: '#542e0f',
-      },
-      headerTintColor: '#fff',
-    },
-  },
+  // DetailScreen: {
+  //   screen: DetailScreen,
+  //   navigationOptions: {
+  //     title: 'Detail',
+  //     headerStyle: {
+  //       backgroundColor: '#542e0f',
+  //     },
+  //     headerTintColor: '#fff',
+  //   },
+  // },
 });
 
 /* Switch Navigator for those screens which needs to be switched only once

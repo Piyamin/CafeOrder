@@ -13,6 +13,7 @@ import HomeScreen from './drawerScreens/HomeScreen';
 import SettingsScreen from './drawerScreens/SettingsScreen';
 import CategoryScreen from './drawerScreens/CategoryScreen';
 import PromotionScreen from './drawerScreens/PromotionScreen';
+import DetailScreen from './drawerScreens/DetailScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 
@@ -70,6 +71,19 @@ const PromotionActivity_StackNavigator = createStackNavigator({
     }),
   },
 });
+const DetailActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: DetailScreen,
+    navigationOptions: ({navigation}) => ({
+      title: 'DetailScreen Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#350D04',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
 
 const DrawerNavigatorRoutes = createDrawerNavigator(
   {
@@ -95,6 +109,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
       screen: PromotionActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Promotion Screen',
+      },
+    },
+    DetailScreen: {
+      screen: DetailActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Detail Screen',
       },
     },
 

@@ -1,42 +1,33 @@
 import React from 'react';
-import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import { StyleSheet, Button, View, TouchableOpacity, Text, Alert } from 'react-native';
 
 const Separator = () => (
   <View style={styles.separator} />
 );
 
 const Promotion = ({ navigation }) => (
-  <SafeAreaView style={styles.container}>
-    <View>
-      <Button
-        title="Promotion "
-        onPress={() =>navigation.navigate('DetailScreen')}
-      />
-    </View>
-    <Separator />
-  </SafeAreaView>
+  <TouchableOpacity
+            style={styles.boxDevice}
+            onPress={() => navigation.navigate('DetailScreen')}>
+            <View style={{ margin: 10 }}>
+              <Text style={styles.textPublic}></Text>
+              <Text style={styles.textPublic}>Promotion</Text>
+            </View>
+  </TouchableOpacity>
+
 );
-
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
+  boxDevice: {
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    width: '100%',
+    height: 100,
+    marginTop: 16,
   },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
+  // stretch: {
+  //   width: 50,
+  //   height: 200,
+  //   resizeMode: 'stretch',
+  // },
 });
 
 export default Promotion;
