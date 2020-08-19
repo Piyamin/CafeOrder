@@ -142,6 +142,7 @@ const LoginScreen = (props) => {
               New Here ? Register
             </Text>
           </KeyboardAvoidingView>
+          
         </View>
       </ScrollView>
     </View>

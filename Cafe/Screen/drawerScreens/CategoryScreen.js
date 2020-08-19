@@ -1,12 +1,10 @@
 /* This is an Login Registration example from https://aboutreact.com/ */
 /* https://aboutreact.com/react-native-login-and-signup/ */
 
-//Import React
+//Import Reac
 import React from 'react';
-
 //Import all required component
 import {View, Text} from 'react-native';
-
 const Test = () => {
   return (
     <View style={{flex: 1, alignItems: 'center', marginTop: 100}}>
