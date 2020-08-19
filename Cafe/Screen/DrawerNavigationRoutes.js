@@ -12,6 +12,7 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import HomeScreen from './drawerScreens/HomeScreen';
 import SettingsScreen from './drawerScreens/SettingsScreen';
 import CategoryScreen from './drawerScreens/CategoryScreen';
+import PromotionScreen from './drawerScreens/PromotionScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 
@@ -56,6 +57,19 @@ const CategoryActivity_StackNavigator = createStackNavigator({
     }),
   },
 });
+const PromotionActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: PromotionScreen,
+    navigationOptions: ({navigation}) => ({
+      title: 'PromotionScreen Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#307ecc',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
 
 const DrawerNavigatorRoutes = createDrawerNavigator(
   {
@@ -75,6 +89,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
       screen: CategoryActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Category Screen',
+      },
+    },
+    PromotionScreen: {
+      screen: PromotionActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Promotion Screen',
       },
     },
   },
