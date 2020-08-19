@@ -37,7 +37,7 @@ const SecondActivity_StackNavigator = createStackNavigator({
       title: 'Setting Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#307ecc',
+        backgroundColor: '#350D04',
       },
       headerTintColor: '#fff',
     }),
@@ -51,7 +51,7 @@ const CategoryActivity_StackNavigator = createStackNavigator({
       title: 'Category Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#307ecc',
+        backgroundColor: '#350D04',
       },
       headerTintColor: '#fff',
     }),
@@ -64,7 +64,7 @@ const PromotionActivity_StackNavigator = createStackNavigator({
       title: 'PromotionScreen Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#307ecc',
+        backgroundColor: '#350D04',
       },
       headerTintColor: '#fff',
     }),
