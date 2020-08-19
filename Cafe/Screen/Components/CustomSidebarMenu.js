@@ -83,8 +83,8 @@ const CustomSidebarMenu = (props) => {
               color: 'white',
               backgroundColor:
                 global.currentScreenIndex === item.screenToNavigate
-                  ? '#4b9ff2'
-                  : '#307ecc',
+                  ? '#542e0f'
+                  : '#350D04',
             }}
             key={key}
             onStartShouldSetResponder={() =>
@@ -104,13 +104,13 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#350D04',
     paddingTop: 40,
     color: 'white',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#350D04',
     padding: 15,
     textAlign: 'center',
   },
@@ -133,7 +133,7 @@ const stylesSidebar = StyleSheet.create({
   profileHeaderLine: {
     height: 1,
     marginHorizontal: 20,
-    backgroundColor: '#e2e2e2',
+    backgroundColor: '#350D04',
     marginTop: 15,
     marginBottom: 10,
   },

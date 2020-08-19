@@ -23,7 +23,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
       title: 'Home Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#307ecc',
+        backgroundColor: '#350D04',
       },
       headerTintColor: '#fff',
     }),
@@ -96,6 +96,7 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
         drawerLabel: 'Promotion Screen',
       },
     },
+
   },
   {
     contentComponent: CustomSidebarMenu,
