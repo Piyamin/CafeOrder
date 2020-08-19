@@ -57,6 +57,7 @@ const App = createSwitchNavigator({
       headerShown: false,
     },
   },
+  
 });
 
 export default createAppContainer(App);

@@ -42,6 +42,7 @@ const SecondActivity_StackNavigator = createStackNavigator({
     }),
   },
 });
+
 const CategoryActivity_StackNavigator = createStackNavigator({
   First: {
     screen: CategoryScreen,
