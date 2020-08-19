@@ -8,6 +8,7 @@ import Popular from '../Components/Popular';
 //Import all required component
 import {View, Text} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import Catagory from '../Components/Catagory';
 
 const HomeScreen = () => {
   global.currentScreenIndex = 'HomeScreen';
@@ -29,13 +30,14 @@ const HomeScreen = () => {
       <Text
         style={{
           fontSize: 23,
-          marginBottom: 20,
+          marginBottom: 5,
           textAlign: 'left',
           marginLeft: 20,
           marginTop: 20,
         }}>
         Catagory
       </Text>
+      <Catagory />
       <Text
         style={{
           fontSize: 23,

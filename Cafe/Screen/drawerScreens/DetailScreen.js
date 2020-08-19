@@ -1,36 +1,69 @@
 // React Native Bottom Navigation - Example using React Navigation V5 //
 // https://aboutreact.com/react-native-bottom-navigation //
 import * as React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
+import Slide from '../Components/Slide';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const DetailScreen = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 , padding: 16}}>
-        <View
+    <ScrollView>
+      <Text
+        style={{
+          fontSize: 25,
+          textAlign: 'left',
+          marginBottom: 16,
+          marginTop: 20,
+          fontFamily: 'Sukhumvit Set',
+          marginLeft: 20,
+        }}>
+        รายละเอียด
+      </Text>
+      <Slide />
+      <View style={{flex: 1, padding: 16}}>
+        <Text
           style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
+            fontSize: 25,
+            textAlign: 'left',
+            marginBottom: 16,
+            fontFamily: 'Sukhumvit Set',
           }}>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            You are on Details Screen
-          </Text>
-        </View>
-        <Text style={{ fontSize: 18, textAlign: 'center', color: 'grey' }}>
+          ชื่อเมนู
+        </Text>
+        <Text style={{fontSize: 18, textAlign: 'center', color: 'grey'}}>
           React Native Bottom Navigation
         </Text>
-        <Text
-          style={{ fontSize: 16, textAlign: 'center', color: 'grey' }}>
+        <Text style={{fontSize: 16, textAlign: 'center', color: 'grey'}}>
           www.aboutreact.com
         </Text>
+        <Text
+          style={{
+            fontSize: 25,
+            textAlign: 'left',
+            marginBottom: 16,
+            fontFamily: 'Sukhumvit Set',
+            marginTop: 20,
+          }}>
+          Rating
+        </Text>
+        <Text style={{fontSize: 18, textAlign: 'center', color: 'grey'}}>
+          React Native Bottom Navigation
+        </Text>
+        <Text style={{fontSize: 16, textAlign: 'center', color: 'grey'}}>
+          www.aboutreact.com
+        </Text>
+        <Text
+          style={{
+            fontSize: 25,
+            textAlign: 'left',
+            marginBottom: 16,
+            fontFamily: 'Sukhumvit Set',
+            marginTop: 20,
+          }}>
+          Price
+        </Text>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
-}
+};
 export default DetailScreen;
