@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "151203582398",
+    "firebase_url": "https://cafeorder-bf31a.firebaseio.com",
+    "project_id": "cafeorder-bf31a",
+    "storage_bucket": "cafeorder-bf31a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151203582398:android:57f002b3a467f708c2a9ef",
+        "android_client_info": {
+          "package_name": "com.cafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151203582398-el8ucooagng2fh8ldkvoj5g7c2636589.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO_5f3B3h-y5vvR0a6mO1HMbcQ-4Ie40I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151203582398-el8ucooagng2fh8ldkvoj5g7c2636589.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
