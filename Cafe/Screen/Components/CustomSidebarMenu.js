@@ -31,6 +31,10 @@ const CustomSidebarMenu = (props) => {
       screenToNavigate: 'DetailScreen',
     },
     {
+      navOptionName: 'Cart Screen',
+      screenToNavigate: 'CartScreen',
+    },
+    {
       navOptionName: 'Logout',
       screenToNavigate: 'logout',
     },

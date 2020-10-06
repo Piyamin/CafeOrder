@@ -9,7 +9,10 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 
 //Import External Screens
+
 import HomeScreen from './drawerScreens/HomeScreen';
+import  CartScreen from './drawerScreens/CartScreen';
+
 import SettingsScreen from './drawerScreens/SettingsScreen';
 import CategoryScreen from './drawerScreens/CategoryScreen';
 import PromotionScreen from './drawerScreens/PromotionScreen';
@@ -62,7 +65,7 @@ const PromotionActivity_StackNavigator = createStackNavigator({
   First: {
     screen: PromotionScreen,
     navigationOptions: ({navigation}) => ({
-      title: 'PromotionScreen Screen',
+      title: 'Promotion Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#350D04',
@@ -84,7 +87,19 @@ const DetailActivity_StackNavigator = createStackNavigator({
     }),
   },
 });
-
+const CartActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: CartScreen,
+    navigationOptions: ({navigation}) => ({
+      title: 'Cart Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#350D04',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
 const DrawerNavigatorRoutes = createDrawerNavigator(
   {
     HomeScreen: {
@@ -115,6 +130,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
       screen: DetailActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Detail Screen',
+      },
+    },
+    CartScreen: {
+      screen: CartActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'CartScreen',
       },
     },
 

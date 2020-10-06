@@ -1,9 +1,13 @@
 // React Native Bottom Navigation - Example using React Navigation V5 //
 // https://aboutreact.com/react-native-bottom-navigation //
 import * as React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView,StyleSheet,Alert,Button} from 'react-native';
 import Slide from '../Components/Slide';
 import {ScrollView} from 'react-native-gesture-handler';
+import { BottomNavigation } from 'react-native-paper';
+import { color } from 'react-native-reanimated';
+
+
 
 const DetailScreen = () => {
   return (
@@ -62,8 +66,20 @@ const DetailScreen = () => {
           }}>
           Price
         </Text>
+        
+        <Button title="Back" color='#2196F3' onPress={() => Alert.alert('Simple Button pressed')}
+        style={{
+          backgroundColor:'#2196F3',
+          fontSize: 25,
+          textAlign: 'left',
+          marginBottom: 16,
+          fontFamily: 'Sukhumvit Set',
+          marginTop: 20,
+
+        }}/>
       </View>
     </ScrollView>
   );
 };
+
 export default DetailScreen;
