@@ -66,7 +66,22 @@ const DetailScreen = () => {
           }}>
           Price
         </Text>
-        
+        <Text style={{fontSize: 16, textAlign: 'center', color: 'grey' ,marginBottom:50}}>
+          www.aboutreact.com
+        </Text>
+   
+        <Button title="Add to Cart" color='#5EBA7D' onPress={() => Alert.alert('Add to Cart')}
+        style={{
+          fontSize: 25,
+          textAlign: 'left',
+          marginBottom: 50,
+          fontFamily: 'Sukhumvit Set',
+          
+
+        }}/>
+        <Text>
+          
+        </Text>
         <Button title="Back" color='#2196F3' onPress={() => Alert.alert('Simple Button pressed')}
         style={{
           backgroundColor:'#2196F3',

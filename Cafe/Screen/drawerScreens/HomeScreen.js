@@ -9,7 +9,6 @@ import Popular from '../Components/Popular';
 import {View, Text} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Catagory from '../Components/Catagory';
-import Foods from '../Components/Foods';
 
 const HomeScreen = () => {
   global.currentScreenIndex = 'HomeScreen';
@@ -50,7 +49,6 @@ const HomeScreen = () => {
         Popular
       </Text>
       <Popular />
-      <Foods/>
     </ScrollView>
   );
 };
