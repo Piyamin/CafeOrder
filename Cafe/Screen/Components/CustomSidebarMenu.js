@@ -23,6 +23,10 @@ const CustomSidebarMenu = (props) => {
       screenToNavigate: 'CategoryScreen',
     },
     {
+      navOptionName: 'Menu Screen',
+      screenToNavigate: 'MenuScreen',
+    },
+    {
       navOptionName: 'Promotion Screen',
       screenToNavigate: 'PromotionScreen',
     },

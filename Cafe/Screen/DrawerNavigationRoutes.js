@@ -11,7 +11,7 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 //Import External Screens
 
 import HomeScreen from './drawerScreens/HomeScreen';
-import  CartScreen from './drawerScreens/CartScreen';
+import CartScreen from './drawerScreens/CartScreen';
 
 import SettingsScreen from './drawerScreens/SettingsScreen';
 import CategoryScreen from './drawerScreens/CategoryScreen';
@@ -19,6 +19,7 @@ import PromotionScreen from './drawerScreens/PromotionScreen';
 import DetailScreen from './drawerScreens/DetailScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
+import MenuScreen from './drawerScreens/MenuScreen';
 
 const FirstActivity_StackNavigator = createStackNavigator({
   First: {
@@ -78,7 +79,7 @@ const DetailActivity_StackNavigator = createStackNavigator({
   First: {
     screen: DetailScreen,
     navigationOptions: ({navigation}) => ({
-      title: 'DetailScreen Screen',
+      title: 'Detail Screen',
       headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#350D04',
@@ -100,6 +101,20 @@ const CartActivity_StackNavigator = createStackNavigator({
     }),
   },
 });
+const MenuActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: MenuScreen,
+    navigationOptions: ({navigation}) => ({
+      title: 'Menu Screen',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#350D04',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
 const DrawerNavigatorRoutes = createDrawerNavigator(
   {
     HomeScreen: {
@@ -135,10 +150,15 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
     CartScreen: {
       screen: CartActivity_StackNavigator,
       navigationOptions: {
-        drawerLabel: 'CartScreen',
+        drawerLabel: 'Cart Screen',
       },
     },
-
+    MenuScreen: {
+      screen: MenuActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Menu Screen',
+      },
+    },
   },
   {
     contentComponent: CustomSidebarMenu,
