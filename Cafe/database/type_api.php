@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "SELECT  order_type FROM menu GROUP BY order_type";
+$sql = "SELECT * FROM type ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
