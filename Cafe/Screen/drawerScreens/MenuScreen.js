@@ -5,46 +5,50 @@ import {FlatGrid} from 'react-native-super-grid';
 // import icons
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import React, { Component } from 'react';
+import {
+  FlatList,
+  Dimensions,
+  ScrollView,
+  TextInput
+} from 'react-native';
+var {height, width } = Dimensions.get('window');
+import Swiper from 'react-native-swiper'
+
 
 export default class MenuScreen extends Component {
-  constructor(props) {
-    super(props)
+  constructor(props)
+  {
+    super(props);
     this.state = {
-      order_id :'',
-      order_name :'',
-      order_image :'',
-      detail_price :'',
-     }
- }
+      dataFood:[],
+    }
+  }
  componentDidMount() {
-  const url = 'http://172.16.28.87/Cafe02/Cafe/database/showMenu_api.php';
+  const url = 'http://172.20.10.6/cafe/showMenu_api.php';
   return fetch(url)
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
+      
         isLoading: false,
-        data:responseJson,
+        dataFood:responseJson,
       });
     })
     .catch((error) => {
       console.error(error);
     });
 }
-   onClickAddCart=()=>{
-     console.log(this.state.data.name)
-     const todoItems = this.state.data.map((data, index) =>
-     // Only do this if items have no stable IDs
-     
-     <li key={index}>
-      {console.log(data.text)}
-     </li>
-   );
-   const itemcart = {
-     food: this.state.data,
-     quantity:  1
-   }
+
+   onClickAddCart=(data)=>{
+    //  console.log(this.lapsList())
+     console.log(data)
+     const itemcart = {
+      food: data,
+      quantity:  1,
+      detail:data.detail_info,
+      price: data.detail_price
+    }
 
    AsyncStorage.getItem('cart').then((datacart)=>{
        if (datacart !== null) {
@@ -64,70 +68,99 @@ export default class MenuScreen extends Component {
        alert(err)
      })
  }
- render(){
+ _renderItemFood(item){
+  
+    return(
+      <TouchableOpacity style={styles.divFood}>
+        <Image
+          style={styles.imageFood}
+          resizeMode="contain"
+          source={{uri:item.order_image}} />
+          <View style={{height:((width/2)-20)-90, backgroundColor:'transparent', width:((width/2)-20)-10}} />
+          <Text style={{fontWeight:'bold',fontSize:22,textAlign:'center'}}>
+            {item.order_name}
+          </Text>
+          <Text>Descp Food and Details</Text>
+          <Text style={{fontSize:20,color:"green"}}>${item.detail_price}</Text>
+          <TouchableOpacity
+            onPress={()=>this.onClickAddCart(item)}
+            style={{
+              width:(width/2)-40,
+              backgroundColor:'#33c37d',
+              flexDirection:'row',
+              alignItems:'center',
+              justifyContent:"center",
+              borderRadius:5,
+              padding:4
+            }}>
+            <Text style={{fontSize:18, color:"white", fontWeight:"bold"}}>Add Cart</Text>
+            <View style={{width:10}} />
+            <Icon name="ios-add-circle" size={30} color={"white"} />
+          </TouchableOpacity>
+        </TouchableOpacity>
+        
+      )
+}
+ render() {
   return (
-      
-    <FlatGrid
-    itemDimension={130}
-    data={this.state.data}
-    style={styles.gridView}
-    // staticDimension={300}
-    // fixed
-    spacing={10}
-    renderItem={({item}) => (
-      <View style={[styles.itemContainer, {backgroundColor: 'gray'}]}>
-      <Image
-      style={{width: 100, height: 80}}
-      source={{uri:item.order_image}}
-    />
-      <Text style={styles.itemName}>{item.order_name}</Text>
-      <Text style={styles.itemCode}>{item.detail_price}</Text>
-    <TouchableOpacity 
-         onPress={this.onClickAddCart}
-          // onPress={()=>this.onClickAddCart(item)}
-          style={{
-            backgroundColor:'#33c37d',
-            flexDirection:'row',
-            alignItems:'center',
-            justifyContent:"center",
-            borderRadius:5,
-            padding:4
-          }}>
-          <Text style={{fontSize:18, color:"white", fontWeight:"bold"}}>Add Cart</Text>
-          <View style={{width:5}} />
-          <Icon name="ios-add-circle" size={30} color={"white"} />
-      </TouchableOpacity>
-      </View>
-    )}
-  />
-  );
- }
-    
-  }
+    <ScrollView>
 
+      
+          <FlatList
+            //horizontal={true}
+            data={this.state.dataFood}
+            numColumns={2}
+            renderItem={({ item }) => this._renderItemFood(item)}
+            keyExtractor = { (item,index) => index.toString() }
+            
+          />
+          <View style={{height:30}} />
+
+    </ScrollView>
+  );
+}
+}
 
 
 
 
 const styles = StyleSheet.create({
-  gridView: {
-    marginTop: 10,
-    flex: 1,
+  imageBanner: {
+    height:width/2,
+    width:width-40,
+    borderRadius:10,
+    marginHorizontal:20
   },
-  itemContainer: {
-    justifyContent: 'flex-end',
-    borderRadius: 5,
-    padding: 10,
-    height: 150,
+  divCategorie:{
+    backgroundColor:'red',
+    margin:5, alignItems:'center',
+    borderRadius:10,
+    padding:10
   },
-  itemName: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: '600',
+  titleCatg:{
+    fontSize:30,
+    fontWeight:'bold',
+    textAlign:'center',
+    marginBottom:10
   },
-  itemCode: {
-    fontWeight: '600',
-    fontSize: 12,
-    color: '#fff',
+  imageFood:{
+    width:((width/2)-20)-10,
+    height:((width/2)-20)-30,
+    backgroundColor:'transparent',
+    position:'absolute',
+    top:-45
   },
+  divFood:{
+    width:(width/2)-20,
+    padding:10,
+    borderRadius:10,
+    marginTop:55,
+    marginBottom:5,
+    marginLeft:10,
+    alignItems:'center',
+    elevation:8,
+    shadowOpacity:0.3,
+    shadowRadius:50,
+    backgroundColor:'white',
+  }
 });

@@ -38,6 +38,7 @@ export default class CartScreen extends Component {
     super(props);
     this.state = {
       dataCart:[],
+      
     };
  }
  onChangeQual(i,type)
@@ -90,17 +91,14 @@ export default class CartScreen extends Component {
              this.state.dataCart.map((item,i)=>{
                return(
                  <View style={{width:width-20,margin:10,backgroundColor:'transparent', flexDirection:'row', borderBottomWidth:2, borderColor:"#cccccc", paddingBottom:10}}>
-                   <Image resizeMode={"contain"} style={{width:width/3,height:width/3}} source={{uri: "http://tutofox.com/foodapp/food/pizza/pizza-1.png"}} />
+                   <Image resizeMode={"contain"} style={{width:width/3,height:width/3}} source={{uri: item.food.order_image}} />
                    <View style={{flex:1, backgroundColor:'trangraysparent', padding:10, justifyContent:"space-between"}}>
                      <View>
-                    {this.state.item.map((item,i)=>{
-                      <Text style={{fontWeight:"bold", fontSize:20}} key={i}>{console.log(item.name)}</Text>
-                    })}
-                       <Text style={{fontWeight:"bold", fontSize:20}} key>{item.name}</Text>{}
-                       <Text>Lorem Ipsum de food</Text>
+                       <Text style={{fontWeight:"bold", fontSize:20}} >{item.food.order_name}</Text>
+                       <Text>{item.food.detail}</Text>
                      </View>
                      <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                       <Text style={{fontWeight:'bold',color:"#33c37d",fontSize:20}}>${'item.price*'}</Text>
+                       <Text style={{fontWeight:'bold',color:"#33c37d",fontSize:20}}>{item.food.detail_price}</Text>
                        <View style={{flexDirection:'row', alignItems:'center'}}>
                          <TouchableOpacity onPress={()=>this.onChangeQual(i,false)}>
                            <Icon name="ios-remove-circle" size={35} color={"#33c37d"} />
