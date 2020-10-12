@@ -4,17 +4,12 @@ $message = '';
 
 $conn = mysqli_connect($HostName, $HostUser, $HostPass, $DatabaseName);
 
-
-$obj = json_decode($_REQUEST, true);
-
-$type_id = $obj['type_id'];
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 
-$sql = "SELECT *  FROM menu WHERE $type_id = order_type ";
+$sql = "SELECT * FROM promotion ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

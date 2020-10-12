@@ -3,7 +3,7 @@
 
 //Import React
 import React from 'react';
-import Snap from '../Components/Snap';
+import Promotion from '../Components/Promotion';
 import Popular from '../Components/Popular';
 //Import all required component
 import {View, Text} from 'react-native';
@@ -17,23 +17,21 @@ const HomeScreen = () => {
       <Text
         style={{
           fontSize: 23,
-          marginTop: 20,
-          marginBottom: 20,
+          marginTop: 10,
+          // marginBottom: 0,
           marginLeft: 20,
           textAlign: 'left',
         }}>
         Promotion
       </Text>
-      <View style={{flex: 1, alignItems: 'center', marginTop: 20}}>
-        <Snap />
-      </View>
+      <Promotion />
       <Text
         style={{
           fontSize: 23,
-          marginBottom: 5,
+          // marginBottom: 5,
           textAlign: 'left',
           marginLeft: 20,
-          marginTop: 20,
+          // marginTop: 20,
         }}>
         Catagory
       </Text>
@@ -41,10 +39,10 @@ const HomeScreen = () => {
       <Text
         style={{
           fontSize: 23,
-          marginBottom: 20,
+          // marginBottom: 20,
           textAlign: 'left',
           marginLeft: 20,
-          marginTop: 20,
+          marginTop: 10,
         }}>
         Popular
       </Text>
