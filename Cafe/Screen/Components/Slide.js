@@ -50,7 +50,7 @@ export default class App extends Component {
                   <Image
                     style={styles.imageBanner}
                     resizeMode="contain"
-                    source={{uri: itembann}}
+                    source={{uri:'https://themomentum.co/wp-content/uploads/2020/02/TheMo_coffee-academics-Web.png'}}
                   />
                 );
               })}

@@ -32,7 +32,7 @@ constructor(props) {
     const { TextInputPassword }  = this.state ;
 
 
-fetch('http://172.16.28.87/Cafe02/Cafe/database/registration_api.php', {
+fetch('http://192.168.43.57/Cafe02/Cafe/database/registration_api.php', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',

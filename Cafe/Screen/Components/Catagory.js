@@ -21,7 +21,7 @@ export default class App extends Component {
     };
   }
   componentDidMount() {
-    const url = 'http://172.16.28.87/Cafe02/Cafe/database/type_api.php';
+    const url = 'http://192.168.43.57/Cafe02/Cafe/database/type_api.php';
     return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -39,7 +39,7 @@ export default class App extends Component {
       <ScrollView>
         <View style={{flex: 1, backgroundColor: '#f2f2f2'}}>
           <View style={{width: width, alignItems: 'center'}}>
-            <View style={{height: 20}} />
+            <View style={{height: 10}} />
               <View>
                 <FlatList
                   horizontal={true}

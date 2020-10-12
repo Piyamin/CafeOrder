@@ -1,62 +1,163 @@
-import React from 'react';
+import {StyleSheet, View, Text,Image} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import {FlatGrid} from 'react-native-super-grid';
+
+// import icons
+import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-community/async-storage';
+import React, { Component } from 'react';
 import {
-  SafeAreaView,
-  View,
   FlatList,
-  StyleSheet,
-  Text,
-  StatusBar,
+  Dimensions,
+  ScrollView,
+  TextInput
 } from 'react-native';
+var {height, width } = Dimensions.get('window');
+import Swiper from 'react-native-swiper'
 
-const DATA = [
+
+export default class Popular extends Component {
+  constructor(props)
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
+    super(props);
+    this.state = {
+      dataFood:[],
+    }
+  }
+ componentDidMount() {
+  const url = 'http://192.168.43.57/Cafe02/Cafe/database/showMenu_api.php';
+  return fetch(url)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+      
+        isLoading: false,
+        dataFood:responseJson,
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+   onClickAddCart=(data)=>{
+    //  console.log(this.lapsList())
+     console.log(data)
+     const itemcart = {
+      food: data,
+      quantity:  1,
+      detail:data.detail_info,
+      price: data.detail_price
+    }
 
-const App = () => {
-  const renderItem = ({item}) => <Item title={item.title} />;
-
+   AsyncStorage.getItem('cart').then((datacart)=>{
+       if (datacart !== null) {
+         // We have data!!
+         const cart = JSON.parse(datacart)
+         cart.push(itemcart)
+         AsyncStorage.setItem('cart',JSON.stringify(cart));
+       }
+       else{
+         const cart  = []
+         cart.push(itemcart)
+         AsyncStorage.setItem('cart',JSON.stringify(cart));
+       }
+       alert("Add Cart")
+     })
+     .catch((err)=>{
+       alert(err)
+     })
+ }
+ _renderItemFood(item){
+    return(
+      <TouchableOpacity style={styles.divFood}>
+        <Image
+          style={styles.imageFood}
+          resizeMode="contain"
+          source={{uri:item.order_image}} />
+          <View style={{height:((width/2)-20)-90, backgroundColor:'transparent', width:((width/2)-20)-10}} />
+          <Text style={{fontWeight:'bold',fontSize:22,textAlign:'center'}}>
+            {item.order_name}
+          </Text>
+          <Text>Descp Food and Details</Text>
+          <Text style={{fontSize:20,color:"green"}}>${item.detail_price}</Text>
+          <TouchableOpacity
+            onPress={()=>this.onClickAddCart(item)}
+            style={{
+              width:(width/2)-40,
+              backgroundColor:'#33c37d',
+              flexDirection:'row',
+              alignItems:'center',
+              justifyContent:"center",
+              borderRadius:5,
+              padding:4
+            }}>
+            <Text style={{fontSize:18, color:"white", fontWeight:"bold"}}>Add Cart</Text>
+            <View style={{width:10}} />
+            <Icon name="ios-add-circle" size={30} color={"white"} />
+          </TouchableOpacity>
+        </TouchableOpacity>
+        
+      )
+}
+ render() {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-    </SafeAreaView>
+    <ScrollView>
+          <FlatList
+            //horizontal={true}
+            data={this.state.dataFood}
+            numColumns={2}
+            renderItem={({ item }) => this._renderItemFood(item)}
+            keyExtractor = { (item,index) => index.toString() }
+            
+          />
+          <View style={{height:30}} />
+
+    </ScrollView>
   );
-};
+}
+}
+
+
+
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+  imageBanner: {
+    height:width/2,
+    width:width-40,
+    borderRadius:10,
+    marginHorizontal:20
   },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+  divCategorie:{
+    backgroundColor:'red',
+    margin:5, alignItems:'center',
+    borderRadius:10,
+    padding:10
   },
-  title: {
-    fontSize: 32,
+  titleCatg:{
+    fontSize:30,
+    fontWeight:'bold',
+    textAlign:'center',
+    marginBottom:10
   },
+  imageFood:{
+    width:((width/2)-20)-10,
+    height:((width/2)-20)-30,
+    backgroundColor:'transparent',
+    position:'absolute',
+    top:-45
+  },
+  divFood:{
+    width:(width/2)-20,
+    padding:10,
+    borderRadius:10,
+    marginTop:20,
+    marginBottom:5,
+    marginLeft:10,
+    alignItems:'center',
+    elevation:8,
+    shadowOpacity:0.3,
+    shadowRadius:50,
+    backgroundColor:'white',
+  }
 });
-
-export default App;

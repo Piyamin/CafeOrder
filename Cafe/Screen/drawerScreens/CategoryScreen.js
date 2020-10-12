@@ -1,68 +1,166 @@
-import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text,Image} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import {FlatGrid} from 'react-native-super-grid';
 
-export default function Example() {
-  const [items, setItems] = React.useState([
-    {name: 'TURQUOISE', code: '#1abc9c'},
-    {name: 'EMERALD', code: '#2ecc71'},
-    {name: 'PETER RIVER', code: '#3498db'},
-    {name: 'AMETHYST', code: '#9b59b6'},
-    {name: 'WET ASPHALT', code: '#34495e'},
-    {name: 'GREEN SEA', code: '#16a085'},
-    {name: 'NEPHRITIS', code: '#27ae60'},
-    {name: 'BELIZE HOLE', code: '#2980b9'},
-    {name: 'WISTERIA', code: '#8e44ad'},
-    {name: 'MIDNIGHT BLUE', code: '#2c3e50'},
-    {name: 'SUN FLOWER', code: '#f1c40f'},
-    {name: 'CARROT', code: '#e67e22'},
-    {name: 'ALIZARIN', code: '#e74c3c'},
-    {name: 'CLOUDS', code: '#ecf0f1'},
-    {name: 'CONCRETE', code: '#95a5a6'},
-    {name: 'ORANGE', code: '#f39c12'},
-    {name: 'PUMPKIN', code: '#d35400'},
-    {name: 'POMEGRANATE', code: '#c0392b'},
-    {name: 'SILVER', code: '#bdc3c7'},
-    {name: 'ASBESTOS', code: '#7f8c8d'},
-  ]);
+// import icons
+import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-community/async-storage';
+import React, { Component } from 'react';
+import {
+  FlatList,
+  Dimensions,
+  ScrollView,
+  TextInput
+} from 'react-native';
+var {height, width } = Dimensions.get('window');
+import Swiper from 'react-native-swiper'
 
-  return (
-    <FlatGrid
-      itemDimension={130}
-      data={items}
-      style={styles.gridView}
-      // staticDimension={300}
-      // fixed
-      spacing={10}
-      renderItem={({item}) => (
-        <View style={[styles.itemContainer, {backgroundColor: item.code}]}>
-          <Text style={styles.itemName}>{item.name}</Text>
-          <Text style={styles.itemCode}>{item.code}</Text>
-        </View>
-      )}
-    />
-  );
+
+export default class CategoryScreen extends Component {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      dataFood:[],
+    }
+  }
+ componentDidMount() {
+  const url = 'http://192.168.43.57/Cafe02/Cafe/database/showMenu_api.php';
+  return fetch(url)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+      
+        isLoading: false,
+        dataFood:responseJson,
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
+   onClickAddCart=(data)=>{
+    //  console.log(this.lapsList())
+     console.log(data)
+     const itemcart = {
+      food: data,
+      quantity:  1,
+      detail:data.detail_info,
+      price: data.detail_price
+    }
+
+   AsyncStorage.getItem('cart').then((datacart)=>{
+       if (datacart !== null) {
+         // We have data!!
+         const cart = JSON.parse(datacart)
+         cart.push(itemcart)
+         AsyncStorage.setItem('cart',JSON.stringify(cart));
+       }
+       else{
+         const cart  = []
+         cart.push(itemcart)
+         AsyncStorage.setItem('cart',JSON.stringify(cart));
+       }
+       alert("Add Cart")
+     })
+     .catch((err)=>{
+       alert(err)
+     })
+ }
+ _renderItemFood(item){
+  
+    return(
+      <TouchableOpacity style={styles.divFood}>
+        <Image
+          style={styles.imageFood}
+          resizeMode="contain"
+          source={{uri:item.order_image}} />
+          <View style={{height:((width/2)-20)-90, backgroundColor:'transparent', width:((width/2)-20)-10}} />
+          <Text style={{fontWeight:'bold',fontSize:22,textAlign:'center'}}>
+            {item.order_name}
+          </Text>
+          <Text>Descp Food and Details</Text>
+          <Text style={{fontSize:20,color:"green"}}>${item.detail_price}</Text>
+          <TouchableOpacity
+            onPress={()=>this.onClickAddCart(item)}
+            style={{
+              width:(width/2)-40,
+              backgroundColor:'#33c37d',
+              flexDirection:'row',
+              alignItems:'center',
+              justifyContent:"center",
+              borderRadius:5,
+              padding:4
+            }}>
+            <Text style={{fontSize:18, color:"white", fontWeight:"bold"}}>Add Cart</Text>
+            <View style={{width:10}} />
+            <Icon name="ios-add-circle" size={30} color={"white"} />
+          </TouchableOpacity>
+        </TouchableOpacity>
+        
+      )
+}
+ render() {
+  return (
+    <ScrollView>
+
+      
+          <FlatList
+            //horizontal={true}
+            data={this.state.dataFood}
+            numColumns={2}
+            renderItem={({ item }) => this._renderItemFood(item)}
+            keyExtractor = { (item,index) => index.toString() }
+            
+          />
+          <View style={{height:30}} />
+
+    </ScrollView>
+  );
+}
+}
+
+
+
+
 const styles = StyleSheet.create({
-  gridView: {
-    marginTop: 10,
-    flex: 1,
+  imageBanner: {
+    height:width/2,
+    width:width-40,
+    borderRadius:10,
+    marginHorizontal:20
   },
-  itemContainer: {
-    justifyContent: 'flex-end',
-    borderRadius: 5,
-    padding: 10,
-    height: 150,
+  divCategorie:{
+    backgroundColor:'red',
+    margin:5, alignItems:'center',
+    borderRadius:10,
+    padding:10
   },
-  itemName: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: '600',
+  titleCatg:{
+    fontSize:30,
+    fontWeight:'bold',
+    textAlign:'center',
+    marginBottom:10
   },
-  itemCode: {
-    fontWeight: '600',
-    fontSize: 12,
-    color: '#fff',
+  imageFood:{
+    width:((width/2)-20)-10,
+    height:((width/2)-20)-30,
+    backgroundColor:'transparent',
+    position:'absolute',
+    top:-45
   },
+  divFood:{
+    width:(width/2)-20,
+    padding:10,
+    borderRadius:10,
+    marginTop:55,
+    marginBottom:5,
+    marginLeft:10,
+    alignItems:'center',
+    elevation:8,
+    shadowOpacity:0.3,
+    shadowRadius:50,
+    backgroundColor:'white',
+  }
 });

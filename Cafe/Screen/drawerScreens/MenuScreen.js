@@ -25,7 +25,7 @@ export default class MenuScreen extends Component {
     }
   }
  componentDidMount() {
-  const url = 'http://172.20.10.6/cafe/showMenu_api.php';
+  const url = 'http://192.168.43.57/Cafe02/Cafe/database/showMenu_api.php';
   return fetch(url)
     .then((response) => response.json())
     .then((responseJson) => {

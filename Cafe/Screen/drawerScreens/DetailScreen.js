@@ -35,26 +35,10 @@ const DetailScreen = () => {
           ชื่อเมนู
         </Text>
         <Text style={{fontSize: 18, textAlign: 'center', color: 'grey'}}>
-          React Native Bottom Navigation
+         Cappuccino
         </Text>
         <Text style={{fontSize: 16, textAlign: 'center', color: 'grey'}}>
-          www.aboutreact.com
-        </Text>
-        <Text
-          style={{
-            fontSize: 25,
-            textAlign: 'left',
-            marginBottom: 16,
-            fontFamily: 'Sukhumvit Set',
-            marginTop: 20,
-          }}>
-          Rating
-        </Text>
-        <Text style={{fontSize: 18, textAlign: 'center', color: 'grey'}}>
-          React Native Bottom Navigation
-        </Text>
-        <Text style={{fontSize: 16, textAlign: 'center', color: 'grey'}}>
-          www.aboutreact.com
+          คาปูชิโนมีส่วนประกอบหลักคือ เอสเพรสโซ และ นม การชงคาปูชิโนโดยส่วนใหญ่มักมีอัตราส่วนของเอสเพรสโซ 1/3 ส่วน ผสมกับนมสตีม (นมร้อนผ่านไอน้ำ) 1/3 ส่วน และนมตีเป็นโฟมละเอียด 1/3 ส่วนลอยอยู่ด้านบน นอกจากนั้นอ
         </Text>
         <Text
           style={{
@@ -66,8 +50,8 @@ const DetailScreen = () => {
           }}>
           Price
         </Text>
-        <Text style={{fontSize: 16, textAlign: 'center', color: 'grey' ,marginBottom:50}}>
-          www.aboutreact.com
+        <Text style={{fontSize: 50, color: 'grey' ,marginBottom:50}}>
+          50
         </Text>
    
         <Button title="Add to Cart" color='#5EBA7D' onPress={() => Alert.alert('Add to Cart')}

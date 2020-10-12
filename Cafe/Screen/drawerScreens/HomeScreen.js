@@ -17,7 +17,7 @@ const HomeScreen = () => {
       <Text
         style={{
           fontSize: 23,
-          marginTop: 10,
+          marginTop: 20,
           // marginBottom: 0,
           marginLeft: 20,
           textAlign: 'left',
@@ -31,9 +31,9 @@ const HomeScreen = () => {
           // marginBottom: 5,
           textAlign: 'left',
           marginLeft: 20,
-          // marginTop: 20,
+          marginTop: 10,
         }}>
-        Catagory
+        Category
       </Text>
       <Catagory />
       <Text

@@ -11,6 +11,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import Swiper from 'react-native-swiper'
 var {height, width} = Dimensions.get('window');
 
 export default class App extends Component {
@@ -23,7 +24,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const url = 'http://172.16.28.87/Cafe02/Cafe/database/promotion_api.php';
+    const url = 'http://192.168.43.57/Cafe02/Cafe/database/promotion_api.php';
     return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -41,18 +42,18 @@ export default class App extends Component {
       <ScrollView>
         <View style={{flex: 1, backgroundColor: '#f2f2f2'}}>
           <View style={{width: width, alignItems: 'center'}}>
-            <View style={{height: 50}} />
+            <View style={{height: 10}} />
           </View>
-
+          <Swiper style={styles.wrapper} height={200} horizontal={true} autoplay>
           <View>
             <FlatList
-              horizontal={true}
               data={this.state.dataCategories}
               renderItem={({item}) => this._renderItem(item)}
               keyExtractor={(item, index) => index.toString()}
             />
             <View style={{height: 50}} />
           </View>
+          </Swiper>
         </View>
       </ScrollView>
     );
@@ -91,6 +92,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 0,
   },
 });

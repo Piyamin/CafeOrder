@@ -1,92 +1,97 @@
-import React from 'react';
-import { StyleSheet, Button, View, TouchableOpacity, Text, Alert,ScrollView } from 'react-native';
+import React, {Component} from 'react';
 
-const Separator = () => (
-  <View style={styles.separator} />
-);
+import {
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  Dimensions,
+  View,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import Swiper from 'react-native-swiper'
+var {height, width} = Dimensions.get('window');
 
-const Promotion = ({ navigation }) => (
-  <View>
-    <ScrollView>
+export default class PromotionScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      promotion_id: '',
+      promotion_image: '',
+    };
+  }
+
+  componentDidMount() {
+    const url = 'http://192.168.43.57/Cafe02/Cafe/database/promotion_api.php';
+    return fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          isLoading: false,
+          dataCategories: responseJson,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  render() {
+    return (
+      <ScrollView>
+        <View style={{flex: 1, backgroundColor: '#f2f2f2'}}>
+          <View style={{width: width, alignItems: 'center'}}>
+            <View style={{height: 10}} />
+          </View>
+          <Swiper style={styles.wrapper}  horizontal={true} autoplay>
+          <View>
+            <FlatList
+              data={this.state.dataCategories}
+              renderItem={({item}) => this._renderItem(item)}
+              keyExtractor={(item, index) => index.toString()}
+            />
+            <View style={{height: 50}} />
+          </View>
+          </Swiper>
+        </View>
+      </ScrollView>
+    );
+  }
+  _renderItem(item) {
+    // const {navigate} = this.props.navigation;
+    return (
       <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-              style={styles.boxDevice}
-              onPress={() => navigation.navigate('DetailScreen')}>
-              <View style={{ margin: 10 }}>
-                <Text style={styles.textPublic}></Text>
-                <Text style={styles.textPublic}>Promotion</Text>
-              </View>
-    </TouchableOpacity>
-  </ScrollView>
-  </View>
-);
-const styles = StyleSheet.create({
-  boxDevice: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    width: '100%',
-    height: 200,
-    marginTop: 16,
-  },
-  // stretch: {
-  //   width: 50,
-  //   height: 200,
-  //   resizeMode: 'stretch',
-  // },
-});
+        style={[styles.divCategorie, {backgroundColor: 'white'}]}
+        onPress={() => this.navigation.navigate('MenuScreen')}>
+        <Image
+          style={{width: 350, height: 200}}
+          resizeMode="contain"
+          source={{uri: item.promotion_image}}
+        />
+      </TouchableOpacity>
+    );
+  }
+}
 
-export default Promotion;
+const styles = StyleSheet.create({
+  imageBanner: {
+    height: width / 2,
+    width: width - 40,
+    borderRadius: 0,
+    // marginHorizontal: 10,
+  },
+  divCategorie: {
+    backgroundColor: 'red',
+    margin: 5,
+    alignItems: 'center',
+    borderRadius: 10,
+    padding: 10,
+  },
+  titleCatg: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 0,
+  },
+});
