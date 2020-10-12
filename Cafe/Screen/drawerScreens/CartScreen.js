@@ -94,7 +94,7 @@ export default class CartScreen extends Component {
                    <View style={{flex:1, backgroundColor:'trangraysparent', padding:10, justifyContent:"space-between"}}>
                      <View>
                     {this.state.item.map((item,i)=>{
-                      <Text style={{fontWeight:"bold", fontSize:20}} key={i}>{console.log(item.name)}</Text>{}
+                      <Text style={{fontWeight:"bold", fontSize:20}} key={i}>{console.log(item.name)}</Text>
                     })}
                        <Text style={{fontWeight:"bold", fontSize:20}} key>{item.name}</Text>{}
                        <Text>Lorem Ipsum de food</Text>
