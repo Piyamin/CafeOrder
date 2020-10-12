@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text,Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {FlatGrid} from 'react-native-super-grid';
 
@@ -18,7 +18,20 @@ export default class MenuScreen extends Component {
      detail_price :'',
     }
  }
- 
+ componentDidMount() {
+  const url = 'http://172.16.28.87/Cafe02/Cafe/database/showMenu_api.php';
+  return fetch(url)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        isLoading: false,
+        data:responseJson,
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
    onClickAddCart=()=>{
      console.log(this.state.data.name)
      const todoItems = this.state.data.map((data, index) =>
@@ -61,14 +74,17 @@ export default class MenuScreen extends Component {
     // fixed
     spacing={10}
     renderItem={({item}) => (
-      <View style={[styles.itemContainer, {backgroundColor: item.code}]}>
-        <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.itemCode}>{item.code}</Text>
-        <TouchableOpacity 
+      <View style={[styles.itemContainer, {backgroundColor: 'gray'}]}>
+      <Image
+      style={{width: 100, height: 80}}
+      source={{uri:item.order_image}}
+    />
+      <Text style={styles.itemName}>{item.order_name}</Text>
+      <Text style={styles.itemCode}>{item.detail_price}</Text>
+    <TouchableOpacity 
          onPress={this.onClickAddCart}
           // onPress={()=>this.onClickAddCart(item)}
           style={{
-            
             backgroundColor:'#33c37d',
             flexDirection:'row',
             alignItems:'center',
@@ -79,7 +95,7 @@ export default class MenuScreen extends Component {
           <Text style={{fontSize:18, color:"white", fontWeight:"bold"}}>Add Cart</Text>
           <View style={{width:5}} />
           <Icon name="ios-add-circle" size={30} color={"white"} />
-        </TouchableOpacity>
+      </TouchableOpacity>
       </View>
     )}
   />

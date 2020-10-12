@@ -21,7 +21,7 @@ export default class App extends Component {
     };
   }
   componentDidMount() {
-    const url = 'http://172.16.240.171/Cafe02/Cafe/database/type_api.php';
+    const url = 'http://172.16.28.87/Cafe02/Cafe/database/type_api.php';
     return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
