@@ -4,6 +4,7 @@ import {FlatGrid} from 'react-native-super-grid';
 
 // import icons
 import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import React, { Component } from 'react';
 
@@ -35,42 +36,76 @@ class MenuScreen extends Component {
     ]  
     }
  }
-   render() {
-    return (
+ 
+   onClickAddCart=()=>{
+     console.log(this.state.data.name)
+     const todoItems = this.state.data.map((data, index) =>
+     // Only do this if items have no stable IDs
+     <li key={index}>
+      {console.log(data.text)}
+     </li>
+   );
+   const itemcart = {
+     food: this.state.data,
+     quantity:  1
+   }
+
+   AsyncStorage.getItem('cart').then((datacart)=>{
+       if (datacart !== null) {
+         // We have data!!
+         const cart = JSON.parse(datacart)
+         cart.push(itemcart)
+         AsyncStorage.setItem('cart',JSON.stringify(cart));
+       }
+       else{
+         const cart  = []
+         cart.push(itemcart)
+         AsyncStorage.setItem('cart',JSON.stringify(cart));
+       }
+       alert("Add Cart")
+     })
+     .catch((err)=>{
+       alert(err)
+     })
+ }
+ render(){
+  return (
       
-      <FlatGrid
-      itemDimension={130}
-      data={this.state.data}
-      style={styles.gridView}
-      // staticDimension={300}
-      // fixed
-      spacing={10}
-      renderItem={({item}) => (
-        <View style={[styles.itemContainer, {backgroundColor: item.code}]}>
-          <Text style={styles.itemName}>{item.name}</Text>
-          <Text style={styles.itemCode}>{item.code}</Text>
-          <TouchableOpacity 
-          //  onPress={addElement}
-            // onPress={()=>this.onClickAddCart(item)}
-            style={{
-              
-              backgroundColor:'#33c37d',
-              flexDirection:'row',
-              alignItems:'center',
-              justifyContent:"center",
-              borderRadius:5,
-              padding:4
-            }}>
-            <Text style={{fontSize:18, color:"white", fontWeight:"bold"}}>Add Cart</Text>
-            <View style={{width:5}} />
-            <Icon name="ios-add-circle" size={30} color={"white"} />
-          </TouchableOpacity>
-        </View>
-      )}
-    />
-    );
+    <FlatGrid
+    itemDimension={130}
+    data={this.state.data}
+    style={styles.gridView}
+    // staticDimension={300}
+    // fixed
+    spacing={10}
+    renderItem={({item}) => (
+      <View style={[styles.itemContainer, {backgroundColor: item.code}]}>
+        <Text style={styles.itemName}>{item.name}</Text>
+        <Text style={styles.itemCode}>{item.code}</Text>
+        <TouchableOpacity 
+         onPress={this.onClickAddCart}
+          // onPress={()=>this.onClickAddCart(item)}
+          style={{
+            
+            backgroundColor:'#33c37d',
+            flexDirection:'row',
+            alignItems:'center',
+            justifyContent:"center",
+            borderRadius:5,
+            padding:4
+          }}>
+          <Text style={{fontSize:18, color:"white", fontWeight:"bold"}}>Add Cart</Text>
+          <View style={{width:5}} />
+          <Icon name="ios-add-circle" size={30} color={"white"} />
+        </TouchableOpacity>
+      </View>
+    )}
+  />
+  );
+ }
+    
   }
-}
+
 
 export default MenuScreen;
 
